@@ -1,17 +1,18 @@
-import {Client} from 'elasticsearch';
+import {Client} from '@elastic/elasticsearch';
+import {User} from './schema/user';
+import {query} from 'express';
 
 export class ElasticSearch {
     client: Client;
 
     constructor() {
         this.client = new Client({
-            host: 'localhost:9200',
-            log: 'trace',
-            apiVersion: '7.2', // use the same version of your Elasticsearch instance
+            node: 'http://localhost:9200',
         });
     }
 
     async ping(): Promise<boolean> {
-        return await this.client.ping({requestTimeout: 1000}) as boolean;
+        const result = await this.client.ping();
+        return result.body;
     }
 }
