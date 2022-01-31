@@ -1,4 +1,4 @@
-import {Client} from '@elastic/elasticsearch/api/new';
+import {Client} from '@elastic/elasticsearch';
 import {User} from './schema/user';
 import {query} from 'express';
 
